@@ -31,7 +31,7 @@ interface TodoDateTimeInputProps {
 
 const ViewTodo: React.FC<PopupPropsViewTodo> = ({ todo_id, show, onClose }) => {
     if (!show) return null;
-    const baseUrl = 'https://assignment.arcanius.id/todo';
+    const baseUrl = 'https://todo.arcanius.id';
     const MySwal = withReactContent(Swal);
     const [sessionToken] = useLocalStorage('session_token', '');
     const [editMode, setEditMode] = React.useState(false);
