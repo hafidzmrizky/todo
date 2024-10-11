@@ -4,7 +4,7 @@ import QRCode from 'qrcode';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'GET') {
-        const code = "tugas.arcanius.id/todo/connect?code=" + req.query.code as string;
+        const code = "https://assignment.arcanius.id/todo?connectcode=" + req.query.code as string;
 
         if (!code) {
             return res.status(400).json({ message: 'Code is required' });

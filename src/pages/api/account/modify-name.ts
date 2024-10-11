@@ -1,12 +1,13 @@
 import pgdb from "@/services/db";
 import { NextApiRequest, NextApiResponse } from "next";
 
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (req.method === 'PUT') {
         const sessionId = req.headers['session-id'] as string;
         const { name } = req.body;
+
+        console.log(name);
 
         if (!name) {
             return res.status(400).json({ message: 'Name is required' });
@@ -38,4 +39,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
-export default handler; // todo: add useSession(handler); to protect the route
+export default handler;
