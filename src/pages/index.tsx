@@ -49,6 +49,9 @@ const IndexPage: React.FC = () => {
           
           if (sessionToken) {
             router.push('/');
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
           }
         } else {
           Swal.fire({
