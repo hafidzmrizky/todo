@@ -1,34 +1,40 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const useFetch = (url: string, headers?: HeadersInit) => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
+const useFetch = (initialUrl: string, initialHeaders: HeadersInit = {}) => {
+  const [url, setUrl] = useState(initialUrl);
+  const [headers, setHeaders] = useState(initialHeaders);
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(url, {
-                    headers: headers
-                });
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(url, { headers });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const result = await response.json();
+      setData(result);
+    } catch (e) {
+      setError(e as Error);
+    } finally {
+      setLoading(false);
+    }
+  }, [url, headers]);
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
-                const data = await response.json();
-                setData(data);
-            } catch (e) {
-                setError(e as Error);
-            } finally {
-                setLoading(false);
-            }
-        };
+  const refetch = useCallback((newUrl?: string, newHeaders?: HeadersInit) => {
+    if (newUrl) setUrl(newUrl);
+    if (newHeaders) setHeaders(newHeaders);
+    fetchData();
+  }, [fetchData]);
 
-        fetchData();
-    }, [url, headers]);
-
-    return { data, loading, error };
+  return { data, loading, error, refetch };
 }
 
 export default useFetch;
