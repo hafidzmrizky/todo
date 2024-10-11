@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:title" content="Todo App by Hafidz Muhammad Rizky" />
         <meta property="og:description" content="A basic to-do app, proof of concept" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://assignment.arcanius.id/todo" />
+        <meta property="og:url" content="https://todo.arcanius.id/" />
         {/*<meta property="og:image" content="https://assignment.com/og-image.jpg" />*/}
       </Head>
       <Component {...pageProps} />
