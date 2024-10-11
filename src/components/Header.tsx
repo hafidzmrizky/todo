@@ -34,8 +34,8 @@ const Header = () => {
       {showDropdown && (
         <div className="absolute right-2 top-full mt-2 w-48 bg-white dark:bg-[#1a1a1a] rounded-md shadow-lg z-50">
           <ul className="py-1">
-            <li className="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer">
-              <a onClick={toggleProfile}>Manage Session</a>
+            <li className="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer" onClick={toggleProfile}>
+              <a>Manage Session</a>
             </li>
           </ul>
         </div>
