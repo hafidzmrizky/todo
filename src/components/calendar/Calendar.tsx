@@ -38,7 +38,7 @@ const Calendar: React.FC<CalendarProps> = ({ todoData, onDateClick }) => {
     const isDateInRange = (date: Date) => { 
         return todoData.some(todo => 
           isWithinInterval(date, { start: parseISO(todo.start), end: parseISO(todo.end) })
-        ) || isSameDay(date, today);  // Include today as "in range"
+        ) || isSameDay(date, today);
     };
 
     const handleDateClick = (date: Date) => {
