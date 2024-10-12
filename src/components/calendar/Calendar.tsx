@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, isWithinInterval, parseISO } from 'date-fns';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, isWithinInterval, parseISO, startOfDay, endOfDay } from 'date-fns';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 interface TodoItem {
@@ -21,8 +21,6 @@ const Calendar: React.FC<CalendarProps> = ({ todoData, onDateClick }) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [pinkMode, setPinkMode] = useState(false);
 
-    const today = new Date();
-
     useEffect(() => {
         setCurrentDate(new Date());
     }, []);
@@ -37,8 +35,11 @@ const Calendar: React.FC<CalendarProps> = ({ todoData, onDateClick }) => {
 
     const isDateInRange = (date: Date) => { 
         return todoData.some(todo => 
-          isWithinInterval(date, { start: parseISO(todo.start), end: parseISO(todo.end) })
-        ) || isSameDay(date, today);
+          isWithinInterval(date, { 
+            start: startOfDay(parseISO(todo.start)), 
+            end: endOfDay(parseISO(todo.end))
+          })
+        );
     };
 
     const handleDateClick = (date: Date) => {
