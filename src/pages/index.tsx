@@ -85,10 +85,10 @@ const IndexPage: React.FC = () => {
 
   const debouncedSetFilterStatus = debounce((status: string) => {
     refetch(`/api/todo?status=${status}`, headers);
+    setFilterStatus(status);
   }, 300); 
 
   const handleSetFilterStatus = (status: string) => {
-    setFilterStatus(status);
     debouncedSetFilterStatus(status);
   };
 
