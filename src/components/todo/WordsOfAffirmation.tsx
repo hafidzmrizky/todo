@@ -34,7 +34,7 @@ const AffirmationDisplay = () => {
 
   return (
     <motion.div 
-      className="h-72 min-h-1/2 md:h-1/2 flex items-center justify-center p-8 cursor-pointer rounded-lg shadow-lg"
+      className="h-full min-h-[35dvh] lg:min-h-full md:h-1/2 flex items-center justify-center p-8 cursor-pointer rounded-lg shadow-lg"
       style={{
         background: `linear-gradient(135deg, ${gradientColors[0]}, ${gradientColors[1]})`,
       }}
