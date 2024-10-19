@@ -1,4 +1,3 @@
-# ToDo List App
 ![ToDo List App Banner](https://is3.cloudhost.id/eventnimz-jktstrg/eventnimz-jktstrg/arcastorage/todo-banner.png)
 Welcome to the ToDo List App! This application is built using **Next.js** and **PostgreSQL**, and is hosted at [todo.arcanius.id](https://todo.arcanius.id). In the future, we plan to implement **TimescaleDB** and support many interesting features.
 
