@@ -46,7 +46,7 @@ const ActivityDesktopTodo: React.FC<ActivityDesktopTodoProps> = ({ todoData, sel
         });
 
     return (
-        <div className="max-h-[95vh] md:min-h-[96vh] xl:min-h-[90.5vh] flex flex-col  w-full max-w-md rounded-xl bg-slate-50 dark:bg-gray-800 p-6 overflow-hidden">
+        <div className="max-h-[45vh] h-[35dvh] min-h-[35dvh] lg:min-h-full flex flex-col  w-full max-w-lg rounded-xl bg-slate-50 dark:bg-gray-800 p-6 overflow-hidden">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-poppins font-bold">To-do</h1>
           <p className="text-sm text-gray-500 dark:text-gray-400">bro.. you have {todoData.length} tasks</p>

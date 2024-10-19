@@ -55,7 +55,7 @@ const Calendar: React.FC<CalendarProps> = ({ todoData, onDateClick }) => {
     };
 
     return (
-        <div className={`p-4 h-1/2 rounded-3xl shadow-lg w-full ${pinkMode ? 'bg-pink-200' : 'bg-blue-200'}`}>
+        <div className={`p-4 h-full rounded-3xl shadow-lg w-full ${pinkMode ? 'bg-pink-200' : 'bg-blue-200'}`}>
             <div className="flex justify-between items-center mb-4">
                 <h2
                 className="text-xl font-semibold text-indigo-800 cursor-pointer"
