@@ -1,6 +1,6 @@
 # ToDo List App
-
-Welcome to the ToDo List App! This application is built using **Next.js** and **PostgreSQL**, and is hosted at todo.arcanius.id. In the future, we plan to implement **TimescaleDB** and support many interesting features.
+![ToDo List App Banner](https://is3.cloudhost.id/eventnimz-jktstrg/eventnimz-jktstrg/arcastorage/todo-banner.png)
+Welcome to the ToDo List App! This application is built using **Next.js** and **PostgreSQL**, and is hosted at [todo.arcanius.id](https://todo.arcanius.id). In the future, we plan to implement **TimescaleDB** and support many interesting features.
 
 ## Features
 
@@ -10,6 +10,7 @@ Welcome to the ToDo List App! This application is built using **Next.js** and **
 - **ToDo List Copy Sharing**: Share your to-do lists with others.
 - **Task Management**: Set start and end dates for tasks, add affirmations, and modify your to-do lists.
 - **Calendar View**: Visualize your tasks in a calendar format.
+- **New! Filter**: Filter your tasks based on the status!
 
 ## Future Enhancements
 

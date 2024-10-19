@@ -40,7 +40,7 @@ const Filter: React.FC<FilterProps> = ({ setFilterStatus, filterStatus, show, on
     <div className="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div className="fixed inset-0 bg-black opacity-50" onClick={onClose}></div>
       <div className="flex items-center justify-center min-h-screen p-4">
-        <div className="bg-white dark:bg-gray-900 w-full max-w-sm rounded-lg shadow-xl overflow-hidden relative z-10" style={{ minHeight: '35dvh', height: '35dvh' }}>
+        <div className="bg-white dark:bg-gray-900 w-full max-w-sm min-h-[45dvh] h-[45dvh] sm:min-h-[35dvh] sm:h-[35dvh] rounded-lg shadow-xl overflow-hidden relative z-10" >
           <div className="p-4 h-full flex flex-col justify-between">
             <div>
               <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Filter to-do</h3>

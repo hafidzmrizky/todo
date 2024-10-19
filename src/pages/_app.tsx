@@ -57,7 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:description" content="A basic to-do app, proof of concept" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://todo.arcanius.id/" />
-        {/*<meta property="og:image" content="https://assignment.com/og-image.jpg" />*/}
+        <meta property="og:image" content="https://is3.cloudhost.id/eventnimz-jktstrg/eventnimz-jktstrg/arcastorage/todo-banner.png" />
       </Head>
       <Component {...pageProps} />
     </>
