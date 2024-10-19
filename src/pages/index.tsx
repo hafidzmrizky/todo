@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Header from '@/components/Header';
 import Calendar from '@/components/calendar/Calendar';
 import ActivityTodo from '@/components/todo/ActivityTodo';
@@ -12,21 +12,22 @@ import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 
 // ok, for reference future me, this is to delay the funct call to avoid multiple crazy fetches and to save on network usage (i think? it works, so uh dont touch pls)
-function debounce(fn: Function, delay: number) {
-  let timeoutId: NodeJS.Timeout;
-  return (...args: any[]) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => fn(...args), delay);
-  };
-}
+  function debounce(fn: Function, delay: number) {
+    let timeoutId: NodeJS.Timeout;
+    return (...args: any[]) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => fn(...args), delay);
+    };
+  }
 
 const IndexPage: React.FC = () => {
   const [sessionToken, setSessionToken] = useLocalStorage('session_token', '');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [todoData, setTodoData] = useState<any[]>([]);
   const [filterStatus, setFilterStatus] = useState<string>('');
+  const [isFilterLoading, setIsFilterLoading] = useState(false);
   const router = useRouter();
   const importId = router.query.import as string;
   const connectId = router.query.connectcode as string;
@@ -83,14 +84,21 @@ const IndexPage: React.FC = () => {
     }
   }, [connectId]);
 
-  const debouncedSetFilterStatus = debounce((status: string) => {
+  const fetchFilteredData = useCallback((status: string) => {
+    setIsFilterLoading(true);
     refetch(`/api/todo?status=${status}`, headers);
-    setFilterStatus(status);
-  }, 300); 
+  }, [headers, refetch]);
 
-  const handleSetFilterStatus = (status: string) => {
-    debouncedSetFilterStatus(status);
-  };
+  const debouncedFetchFilteredData = useMemo(
+    () => debounce(fetchFilteredData, 300),
+    [fetchFilteredData]
+  );
+
+  const handleSetFilterStatus = useCallback((status: string) => {
+    setFilterStatus(status);
+    debouncedFetchFilteredData(status);
+  }, [debouncedFetchFilteredData]);
+
 
   const handleCalendarDateClick = async (date: Date) => {
     setSelectedDate(date);
@@ -132,6 +140,7 @@ const IndexPage: React.FC = () => {
 
     if (data) {
       setTodoData(data);
+      setIsFilterLoading(false);
       console.log('Session is valid');
     } else {
       setTodoData([]);
@@ -180,6 +189,15 @@ const IndexPage: React.FC = () => {
 
   return (
     <>
+
+      {isFilterLoading && (
+              <div className='dark:bg-[#121212] dark:text-white bg-white text-black'>
+                <div className='w-full h-screen flex justify-center items-center'>
+                  <div className='text-2xl font-bold'>Loading...</div>
+                </div>
+              </div>
+            )}
+
       {loading && (
         <div className='dark:bg-[#121212] dark:text-white bg-white text-black'>
           <div className='w-full h-screen flex justify-center items-center'>
